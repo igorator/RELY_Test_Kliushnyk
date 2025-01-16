@@ -1,50 +1,22 @@
-# React + TypeScript + Vite
+# 🐱 Cat Gallery
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A delightful web application that showcases a gallery of cat images fetched from TheCatAPI. Users can explore various cat breeds, filter them by breed, and favorite their top picks.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Responsive Cat Image Gallery**: Browse through a visually appealing, responsive grid of cat images, each labeled with its breed name.
+- **Breed Filtering**: Easily filter cats by breed using a dropdown or search input, refining your gallery view to your favorite breeds.
+- **Favorites Management**: Mark cats as favorites and toggle between viewing all cats or just your favorites, with data saved locally for a personalized experience.
+- **React & State Management**: Built with functional components using React Hooks and managed state effectively using React Context API.
+- **API Integration**: Seamless integration with TheCatAPI, handling data fetching, caching, and error management gracefully using React Query.
+- **Modern UI with Tailwind CSS**: Styled with Tailwind CSS for a clean, responsive, and visually engaging user interface.
+- **TypeScript & Vite**: Developed with TypeScript for type safety and Vite for a fast, modern development experience.
+- **Quality Tools**: Ensures code quality and consistency with Husky and linters.
 
-## Expanding the ESLint configuration
+## Deployment
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+The application is deployed and accessible [here](#).
 
-- Configure the top-level `parserOptions` property like this:
+---
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Feel free to explore the codebase and enjoy the purrfect cat gallery experience!
