@@ -19,7 +19,7 @@ export const FilterBar = ({
   };
 
   return (
-    <div className='flex sm:flex-col md:flex-row items-center justify-between gap-12'>
+    <div className='flex flex-col md:flex-row items-center justify-between gap-12'>
       <IsFavSwitch
         isChecked={onlyFavorite}
         onChange={() => setOnlyFavorite(!onlyFavorite)}
@@ -34,11 +34,13 @@ export const FilterBar = ({
             label: breed.name,
           })) || []),
         ]}
-        placeholder='Select a breed'
+        placeholder='Select a breed...'
         onChange={handleBreedChange}
-        className='my-react-select-container w-[100%] max-w-[640px]'
+        className={`my-react-select-container w-[100%] max-w-[640px] ${
+          isLoading || onlyFavorite ? 'opacity-40' : 'opacity-100'
+        }`}
         classNamePrefix='my-react-select'
-        isDisabled={isLoading}
+        isDisabled={isLoading || onlyFavorite}
       />
     </div>
   );

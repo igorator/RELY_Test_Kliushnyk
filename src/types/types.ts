@@ -1,6 +1,7 @@
 export interface Cat {
   id: string;
   url: string;
+  image_id: string;
   breeds: Breed[];
 }
 
