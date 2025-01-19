@@ -10,7 +10,9 @@ export const queryClient = new QueryClient({
   mutationCache: new MutationCache({
     onError: (error, _, __, mutation) => {
       const { mutationKey } = mutation.options;
-      toast.error(`API Mutation Error ${mutationKey ? `: ${mutation}` : ""}`);
+      toast.error(
+        `API Mutation Error ${mutationKey ? `: ${mutation}` : ""} - ${error.message}`,
+      );
     },
   }),
 });
