@@ -16,16 +16,14 @@ export const useFilter = () => {
   const handleSetSelectedBreed = async (breed: string | null) => {
     setSelectedBreed(breed);
     await queryClient.invalidateQueries({
-      queryKey: ['cats'],
-      refetchType: 'active',
+      queryKey: ['cats', { selectedBreed }],
     });
   };
 
   const handleSetOnlyFavorite = async (value: boolean) => {
     setOnlyFavorite(value);
     await queryClient.invalidateQueries({
-      queryKey: ['cats'],
-      refetchType: 'active',
+      queryKey: ['cats', { onlyFavorite }],
     });
   };
 

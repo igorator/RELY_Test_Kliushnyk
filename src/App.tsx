@@ -39,6 +39,7 @@ function App() {
       {
         queryKey: ['breeds'],
         queryFn: getBreeds,
+        staleTime: 0,
         refetchOnWindowFocus: false,
       },
     ],
@@ -51,6 +52,9 @@ function App() {
     isLoading: isLoadingBreeds,
     error: errorBreeds,
   } = breedsQuery;
+
+  console.log(cats);
+  console.log(onlyFavorite);
 
   return (
     <main className='w-full flex flex-col max-w-[1440px] mx-auto p-[24px] text-white gap-16'>
