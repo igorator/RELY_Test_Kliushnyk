@@ -1,7 +1,6 @@
 import { createContext, useState, ReactNode } from "react";
 import { queryClient } from "../../api/queryClient";
 
-// Типизация контекста
 interface FilterContextType {
   selectedBreed: string | null;
   setSelectedBreed: (breed: string | null) => void;
@@ -9,7 +8,6 @@ interface FilterContextType {
   setOnlyFavorite: (value: boolean) => void;
 }
 
-// Создание контекста
 export const FilterContext = createContext<FilterContextType | undefined>(
   undefined,
 );
