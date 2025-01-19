@@ -5,14 +5,10 @@ import Select, { SingleValue } from "react-select";
 import { IsFavSwitch } from "../../shared/components/IsFavSwitch";
 import { Breed } from "../../data/types";
 import { routes } from "../../data/routes";
+import { useBreeds } from "../../hooks/useBreeds";
 
-export const CatFilterBar = ({
-  breeds,
-  isLoading,
-}: {
-  breeds: Breed[];
-  isLoading: boolean;
-}) => {
+export const CatFilterBar = () => {
+  const { breeds, isLoading } = useBreeds();
   const { setSelectedBreed, onlyFavorite, setOnlyFavorite } = useFilter();
   const navigate = useNavigate();
 
@@ -33,6 +29,17 @@ export const CatFilterBar = ({
     }
   };
 
+  const options = [
+    {
+      value: "",
+      label: "Select a breed",
+      ...(breeds?.map((breed: Breed) => ({
+        value: breed.id,
+        label: breed.name,
+      })) || []),
+    },
+  ];
+
   return (
     <FilterBar>
       <IsFavSwitch
@@ -41,13 +48,7 @@ export const CatFilterBar = ({
         isDisabled={isLoading}
       />
       <Select
-        options={[
-          { value: "", label: "Select a breed" },
-          ...(breeds?.map((breed) => ({
-            value: breed.id,
-            label: breed.name,
-          })) || []),
-        ]}
+        options={options}
         placeholder="Select a breed..."
         onChange={handleBreedChange}
         className={`my-react-select-container w-[100%] max-w-[640px] ${

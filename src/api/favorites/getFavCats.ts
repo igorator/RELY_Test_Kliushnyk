@@ -1,6 +1,6 @@
 import { Cat } from "../../data/types";
 
-export const getFavCats = (breed_ids: string | null = null) => {
+export const getFavCats = (breed_ids?: string | null) => {
   const favCats = JSON.parse(localStorage.getItem("favCats") || "[]");
 
   if (breed_ids) {
