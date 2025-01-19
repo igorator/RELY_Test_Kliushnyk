@@ -1,27 +1,33 @@
-const BASE_URL = import.meta.env.VITE_CATS_BASE_URL;
-const API_KEY = import.meta.env.VITE_CATS_API_KEY;
-
-const ENDPOINT = 'favourites';
-
-export const addCatToFavById = async ({
-  image_id,
-  sub_id,
+export const addCatToFavById = ({
+  id,
+  breeds,
+  url,
 }: {
-  image_id: string;
-  sub_id: string;
+  id: string;
+  breeds: {
+    id: string;
+    name: string;
+  }[];
+  url: string;
 }) => {
-  const url = `${BASE_URL}/${ENDPOINT}`;
-  const body = JSON.stringify({
-    'image_id': image_id,
-    'sub_id': sub_id,
-  });
+  const favCats = JSON.parse(localStorage.getItem("favCats") || "[]");
 
-  const headers = {
-    'content-type': 'application/json',
-    'x-api-key': API_KEY,
+  // Проверяем, есть ли уже кот с таким ID в избранных
+  if (favCats.some((cat: { id: string }) => cat.id === id)) {
+    return;
+  }
+
+  // Формируем новый объект кота для добавления в избранное
+  const newCat = {
+    id: id,
+    breeds: breeds.map((breed) => ({
+      id: breed.id,
+      name: breed.name,
+    })),
+    url,
   };
 
-  return await fetch(url, { method: 'POST', headers, body: body }).then(
-    (response) => response.json(),
-  );
+  favCats.push(newCat);
+
+  localStorage.setItem("favCats", JSON.stringify(favCats));
 };
