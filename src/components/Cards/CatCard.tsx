@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import { Card } from "../../shared/components/Card";
 import { Cat } from "../../data/types";
-import { addCatToFavById } from "../../api/favorites/addCatToFavById";
-import { removeCatFromFavById } from "../../api/favorites/removeCatFromFavById";
 import { toast } from "react-toastify";
+import { favCatRepository } from "../../api/FavCatsRepository";
 
 export const CatCard = ({
   cat,
@@ -23,7 +22,7 @@ export const CatCard = ({
   }, [cat.id]);
 
   const handleAddToFavorites = () => {
-    addCatToFavById({
+    favCatRepository.addCatToFavById({
       id: cat.id,
       url: cat.url,
       breeds: cat.breeds,
@@ -33,7 +32,7 @@ export const CatCard = ({
   };
 
   const handleRemoveFromFavorites = () => {
-    removeCatFromFavById({ id: cat.id });
+    favCatRepository.removeCatFromFavById({ id: cat.id });
 
     if (onRemoveFromFav) {
       onRemoveFromFav(cat.id);
