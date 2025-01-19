@@ -1,11 +1,12 @@
-import Select, { SingleValue } from "react-select";
-import { useFilter } from "../hooks/useFilter";
-import { IsFavSwitch } from "../shared/components/IsFavSwitch";
-import { Breed } from "../data/types";
 import { useNavigate } from "react-router-dom";
-import { routes } from "../data/routes";
+import { useFilter } from "../../hooks/useFilter";
+import { FilterBar } from "../../shared/components/FilterBar";
+import Select, { SingleValue } from "react-select";
+import { IsFavSwitch } from "../../shared/components/IsFavSwitch";
+import { Breed } from "../../data/types";
+import { routes } from "../../data/routes";
 
-export const FilterBar = ({
+export const CatFilterBar = ({
   breeds,
   isLoading,
 }: {
@@ -33,13 +34,12 @@ export const FilterBar = ({
   };
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-between gap-12">
+    <FilterBar>
       <IsFavSwitch
         isChecked={onlyFavorite}
         onChange={handleSwitchChange}
         isDisabled={isLoading}
       />
-
       <Select
         options={[
           { value: "", label: "Select a breed" },
@@ -56,6 +56,6 @@ export const FilterBar = ({
         classNamePrefix="my-react-select"
         isDisabled={isLoading}
       />
-    </div>
+    </FilterBar>
   );
 };

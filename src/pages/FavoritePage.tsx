@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getFavCats } from "../api/favorites/getFavCats";
 import { CatCard } from "../components/Cards/CatCard";
-import { Gallery } from "../components/Gallery";
+import { Gallery } from "../shared/components/Gallery";
 import { Cat } from "../data/types";
 import { useFilter } from "../hooks/useFilter";
 import { removeCatFromFavById } from "../api/favorites/removeCatFromFavById"; // Импортируем метод для удаления кота

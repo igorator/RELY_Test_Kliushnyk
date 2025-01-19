@@ -1,4 +1,4 @@
-import { Gallery } from "../components/Gallery";
+import { Gallery } from "../shared/components/Gallery";
 import { CatCard } from "../components/Cards/CatCard";
 import { useFilter } from "../hooks/useFilter";
 import { Cat } from "../data/types";
