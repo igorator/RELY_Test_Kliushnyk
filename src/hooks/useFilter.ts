@@ -1,36 +1,12 @@
-import { useContext } from 'react';
-import { FilterContext } from '../context/filter/FilterContext';
-import { useQueryClient } from '@tanstack/react-query';
+import { useContext } from "react";
+import { FilterContext } from "../context/filter/FilterProvider";
 
 export const useFilter = () => {
   const context = useContext(FilterContext);
-  const queryClient = useQueryClient();
 
   if (context === undefined) {
-    throw new Error('useFilter must be used within a FilterProvider');
+    throw new Error("useFilter must be used within a FilterProvider");
   }
 
-  const { selectedBreed, setSelectedBreed, onlyFavorite, setOnlyFavorite } =
-    context;
-
-  const handleSetSelectedBreed = async (breed: string | null) => {
-    setSelectedBreed(breed);
-    await queryClient.invalidateQueries({
-      queryKey: ['cats', { selectedBreed }],
-    });
-  };
-
-  const handleSetOnlyFavorite = async (value: boolean) => {
-    setOnlyFavorite(value);
-    await queryClient.invalidateQueries({
-      queryKey: ['cats', { onlyFavorite }],
-    });
-  };
-
-  return {
-    selectedBreed,
-    setSelectedBreed: handleSetSelectedBreed,
-    onlyFavorite,
-    setOnlyFavorite: handleSetOnlyFavorite,
-  };
+  return context;
 };

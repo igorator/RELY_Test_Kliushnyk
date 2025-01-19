@@ -1,64 +1,55 @@
-import { useState, useEffect, useCallback } from 'react';
-import { addCatToFavById } from '../../api/favorites/addCatToFavById';
-import { removeCatFromFavById } from '../../api/favorites/removeCatFromFavById';
-import { FavButton } from '../Buttons/FavButton';
-import { Cat, FavoriteCat } from '../../types/types';
-import { useUserId } from '../../hooks/useUserId';
-import { useQueryClient } from '@tanstack/react-query';
-import { toast } from 'react-toastify';
+import { useState, useEffect } from "react";
+import { Card } from "../../shared/components/Card";
+import { Cat } from "../../data/types";
+import { addCatToFavById } from "../../api/favorites/addCatToFavById";
+import { removeCatFromFavById } from "../../api/favorites/removeCatFromFavById";
+import { toast } from "react-toastify";
 
-export const CatCard = ({ cat }: { cat: Cat | FavoriteCat }) => {
-  const { subId } = useUserId();
-  const queryClient = useQueryClient();
-
-  const initialIsFav = 'sub_id' in cat || 'favourite' in cat;
-  const [isFav, setIsFav] = useState(initialIsFav);
+export const CatCard = ({
+  cat,
+  onRemoveFromFav,
+}: {
+  cat: Cat;
+  onRemoveFromFav?: (id: string) => void;
+}) => {
+  const [isFav, setIsFav] = useState(false);
 
   useEffect(() => {
-    setIsFav(initialIsFav);
-  }, [initialIsFav]);
+    const favCats = JSON.parse(localStorage.getItem("favCats") || "[]");
+    const isCatFav = favCats.some(
+      (favCat: { id: string }) => favCat.id === cat.id,
+    );
+    setIsFav(isCatFav);
+  }, [cat.id]);
 
-  const handleFavToggle = useCallback(async () => {
-    try {
-      setIsFav((prev) => !prev);
+  const handleAddToFavorites = () => {
+    addCatToFavById({
+      id: cat.id,
+      url: cat.url,
+      breeds: cat.breeds,
+    });
+    setIsFav(true);
+    toast("Cat added to favorites!");
+  };
 
-      if (isFav) {
-        await removeCatFromFavById({
-          favouriteId:
-            (cat as FavoriteCat).favourite?.id || (cat as FavoriteCat).id,
-        });
-        toast(`Cat removed from favorite!`);
-      } else {
-        await addCatToFavById({ image_id: (cat as Cat).id, sub_id: subId });
-        toast(`Cat added to favorite!`);
-      }
+  const handleRemoveFromFavorites = () => {
+    removeCatFromFavById({ id: cat.id });
 
-      await queryClient.invalidateQueries({
-        queryKey: ['cats'],
-      });
-    } catch (error) {
-      setIsFav((prev) => !prev);
-      toast(`${error}`);
-      console.error('Failed to toggle favorite status', error);
+    if (onRemoveFromFav) {
+      onRemoveFromFav(cat.id);
     }
-  }, [cat, isFav, queryClient, subId]);
+
+    setIsFav(false);
+    toast("Cat removed from favorites!");
+  };
 
   return (
-    <div
-      className={`flex w-full flex-col rounded-lg overflow-hidden border-[1px] border-white ${
-        isFav ? 'border-opacity-30' : 'border-opacity-10'
-      }`}
-    >
-      <img
-        src={(cat as Cat).url || (cat as FavoriteCat).image.url}
-        className='w-full h-[300px] object-cover'
-      />
-      <div className='flex items-center justify-between w-full p-6'>
-        {(cat as Cat).breeds?.[0]?.name && (
-          <span>{(cat as Cat).breeds[0].name}</span>
-        )}
-        <FavButton isFav={isFav} onToggle={handleFavToggle} />
-      </div>
-    </div>
+    <Card
+      image={cat.url}
+      name={cat.breeds?.[0]?.name || "Unknown Breed"}
+      isFav={isFav}
+      addToFavorites={handleAddToFavorites}
+      removeFromFavorites={handleRemoveFromFavorites}
+    />
   );
 };
