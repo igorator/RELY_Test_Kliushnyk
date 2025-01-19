@@ -8,7 +8,7 @@ import { queryClient } from "./api/queryClient.ts";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { SearchPage } from "./pages/SearchPage.tsx";
 import { FavoritePage } from "./pages/FavoritePage.tsx";
-import { routes } from "./data/routes";
+import { routes } from "./shared/data/routes.ts";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

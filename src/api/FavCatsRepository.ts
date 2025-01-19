@@ -1,4 +1,4 @@
-import { Cat } from "../data/types";
+import { Cat } from "../shared/data/types";
 
 class FavCatRepository {
   private getFavCats(): Cat[] {
