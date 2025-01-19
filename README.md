@@ -15,7 +15,7 @@ A delightful web application that showcases a gallery of cat images fetched from
 
 ## Deployment
 
-The application is deployed and accessible [here](#).
+The application is deployed and accessible [here]([#](https://rely-test-kliushnyk.vercel.app/search)).
 
 ---
 
