@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { FilterContext } from '../context/FilterContext';
+import { FilterContext } from '../context/filter/FilterContext';
 import { useQueryClient } from '@tanstack/react-query';
 
 export const useFilter = () => {

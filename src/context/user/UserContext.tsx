@@ -5,7 +5,6 @@ interface UserContextType {
   setSubId: (subId: string) => void;
 }
 
-// Создание контекста с типом
 export const UserContext = createContext<UserContextType | undefined>(
   undefined,
 );

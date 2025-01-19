@@ -1,5 +1,5 @@
 import { useState, ReactNode } from 'react';
-import { FilterContext } from './FilterContext';
+import { FilterContext } from '../filter/FilterContext';
 
 export const FilterProvider = ({ children }: { children: ReactNode }) => {
   const [selectedBreed, setSelectedBreed] = useState<string | null>(null);

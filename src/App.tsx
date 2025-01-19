@@ -53,9 +53,6 @@ function App() {
     error: errorBreeds,
   } = breedsQuery;
 
-  console.log(cats);
-  console.log(onlyFavorite);
-
   return (
     <main className='w-full flex flex-col max-w-[1440px] mx-auto p-[24px] text-white gap-16'>
       <h1 className='font-bold text-[59px]'>Cats</h1>

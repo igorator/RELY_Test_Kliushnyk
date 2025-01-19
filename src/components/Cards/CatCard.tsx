@@ -11,18 +11,15 @@ export const CatCard = ({ cat }: { cat: Cat | FavoriteCat }) => {
   const { subId } = useUserId();
   const queryClient = useQueryClient();
 
-  // Initialize local state based on props
   const initialIsFav = 'sub_id' in cat || 'favourite' in cat;
   const [isFav, setIsFav] = useState(initialIsFav);
 
-  // Update local state when prop changes (e.g., after query invalidation)
   useEffect(() => {
     setIsFav(initialIsFav);
   }, [initialIsFav]);
 
   const handleFavToggle = useCallback(async () => {
     try {
-      // Optimistically update local state
       setIsFav((prev) => !prev);
 
       if (isFav) {
@@ -36,12 +33,10 @@ export const CatCard = ({ cat }: { cat: Cat | FavoriteCat }) => {
         toast(`Cat added to favorite!`);
       }
 
-      // Invalidate queries to sync with server data
       await queryClient.invalidateQueries({
         queryKey: ['cats'],
       });
     } catch (error) {
-      // Revert local state on error
       setIsFav((prev) => !prev);
       toast(`${error}`);
       console.error('Failed to toggle favorite status', error);

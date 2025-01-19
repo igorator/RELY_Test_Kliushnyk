@@ -1,5 +1,5 @@
 import { ReactNode, useState, useEffect } from 'react';
-import { UserContext } from './UserContext';
+import { UserContext } from '../user/UserContext';
 
 interface UserProviderProps {
   children: ReactNode;
