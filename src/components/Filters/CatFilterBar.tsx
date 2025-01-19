@@ -33,11 +33,11 @@ export const CatFilterBar = () => {
     {
       value: "",
       label: "Select a breed",
-      ...(breeds?.map((breed: Breed) => ({
-        value: breed.id,
-        label: breed.name,
-      })) || []),
     },
+    ...(breeds?.map((breed: Breed) => ({
+      value: breed.id,
+      label: breed.name,
+    })) || []),
   ];
 
   return (
