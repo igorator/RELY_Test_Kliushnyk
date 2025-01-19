@@ -1,7 +1,7 @@
 import "./App.css";
-import { CatFilterBar } from "./components/Filters/CatFilterBar";
-import { ToastContainer } from "react-toastify";
 import { Outlet } from "react-router";
+import { CatFilterBar } from "./components/Cats/Filters/CatFilterBar";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (

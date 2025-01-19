@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
-import { CatCard } from "../components/Cards/CatCard";
+import { CatCard } from "../components/Cats/Cards/CatCard";
 import { Gallery } from "../shared/components/Gallery";
-import { Cat } from "../data/types";
+import { Cat } from "../shared/data/types";
 import { useFilter } from "../hooks/useFilter";
 
 import { favCatRepository } from "../api/FavCatsRepository";

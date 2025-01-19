@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import { useFilter } from "../../hooks/useFilter";
-import { FilterBar } from "../../shared/components/FilterBar";
+import { useFilter } from "../../../hooks/useFilter";
+import { FilterBar } from "../../../shared/components/FilterBar";
 import Select, { SingleValue } from "react-select";
-import { IsFavSwitch } from "../../shared/components/IsFavSwitch";
-import { Breed } from "../../data/types";
-import { routes } from "../../data/routes";
-import { useBreeds } from "../../hooks/useBreeds";
+import { IsFavSwitch } from "../../../shared/components/IsFavSwitch";
+import { Breed } from "../../../shared/data/types";
+import { routes } from "../../../shared/data/routes";
+import { useBreeds } from "../../../hooks/useBreeds";
 
 export const CatFilterBar = () => {
   const { breeds, isLoading } = useBreeds();

@@ -1,7 +1,7 @@
 import { Gallery } from "../shared/components/Gallery";
-import { CatCard } from "../components/Cards/CatCard";
+import { CatCard } from "../components/Cats/Cards/CatCard";
 import { useFilter } from "../hooks/useFilter";
-import { Cat } from "../data/types";
+import { Cat } from "../shared/data/types";
 import { useCats } from "../hooks/useCats";
 
 export const SearchPage = () => {

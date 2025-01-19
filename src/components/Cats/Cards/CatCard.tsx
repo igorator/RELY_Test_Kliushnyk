@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { Card } from "../../shared/components/Card";
-import { Cat } from "../../data/types";
+import { Card } from "../../../shared/components/Card";
+import { Cat } from "../../../shared/data/types";
 import { toast } from "react-toastify";
-import { favCatRepository } from "../../api/FavCatsRepository";
+import { favCatRepository } from "../../../api/FavCatsRepository";
 
 export const CatCard = ({
   cat,
